@@ -11,7 +11,17 @@ export default function MyLibrary() {
     const [description, setDescription] = useState(null)
     const [image, setImage] = useState(null)
     const [language, setLanguage] = useState(null)
+    const [bookPurpose, setBookPurpose] = useState(null)
+    const {isLoggedIn, user} = useContext(AuthContext)
     
+    const handleStoreToMyDB = () =>{
+        console.log('I am adding it')
+    }
+
+    const handlePurpose = (e) => {
+        // setBookPurpose(e)
+        setBookPurpose(e.target.value)
+    }
 
     const handleIsbn = e => setIsbn(e.target.value)
     const handleSubmit = e => {
@@ -66,11 +76,6 @@ export default function MyLibrary() {
         })
         .catch(err => console.log(err))
     }
-        console.log(title)
-        console.log(description)
-        console.log(author)
-        console.log(language)
-        console.log(image)
         
 
     
@@ -83,8 +88,17 @@ export default function MyLibrary() {
                 <button type="submit">Find Book</button>
 			</form>
            
-            {title && author && language && <Book title={title} author={author} language={language} description={description} image={image}/>}
+            {title && author && language && <Book title={title} author={author} language={language} description={description} image={image} handleStoreToMyDB={handleStoreToMyDB}/> }
             
+            {title && author && language &&  
+            <div onChange={handlePurpose}>
+                <input type="radio" value="GiveAway" name="gender" /> Give Away
+                <input type="radio" value="Exchange" name="gender" /> Exchange
+                <input type="radio" value="TradeForAPeriod" name="gender" /> Trade for a short period
+            </div> }
+            
+            {title && author && language && <button onClick={handleStoreToMyDB}>Add it to my Library</button>}
+
         </div>
     )
 }

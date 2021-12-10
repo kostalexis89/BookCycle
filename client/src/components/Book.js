@@ -1,6 +1,7 @@
 import React from 'react'
 
 export default function Book({title, description, image, author, language}) {
+  
     return (
         <div>
             <h1>{title}</h1>
@@ -9,6 +10,9 @@ export default function Book({title, description, image, author, language}) {
             
             <p>{language}</p>
             {image && <img src={image} alt={title} />}
+
+        
+           
             
 
         </div>
