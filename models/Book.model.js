@@ -23,11 +23,6 @@ const bookSchema = new Schema(
       required: false,
       unique: false  
     },
-    picture: {
-      type: String,
-      required: false,
-      unique: false
-    },
     language: {
         type: String,
         required: false,
