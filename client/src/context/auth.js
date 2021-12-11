@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 const AuthContext = React.createContext();
 
@@ -8,6 +9,7 @@ function AuthProviderWrapper(props) {
 	const [user, setUser] = useState(null)
 	const [isLoading, setIsLoading] = useState(true)
 
+	const navigate = useNavigate()
 	//a method it login the user
 	//this is a fucking function!
 	const loginUser = token => {
@@ -23,6 +25,7 @@ function AuthProviderWrapper(props) {
 		setIsLoggedIn(false)
 		//the last step
 		setUser(null)
+		navigate("/")
 	}
 
 	const verifyStoredToken = () => {

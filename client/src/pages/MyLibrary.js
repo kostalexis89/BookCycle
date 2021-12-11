@@ -14,8 +14,26 @@ export default function MyLibrary() {
     const [bookPurpose, setBookPurpose] = useState(null)
     const {isLoggedIn, user} = useContext(AuthContext)
     
-    const handleStoreToMyDB = () =>{
-        console.log('I am adding it')
+
+//    console.log(user)
+    const handleStoreToMyDB = (e) =>{
+        // console.log('I am adding it')
+        e.preventDefault()
+        const requestBody = {title: title, description: description, author: author, image: image, language: language, town: user.town, purpose: bookPurpose, available: true, user: user._id}
+        axios.post('/books/add', requestBody)
+        .then(response=> {
+            // console.log(response)
+            setIsbn('')
+            setAuthor(null)
+            setDescription(null)
+            setImage(null)
+            setLanguage(null)
+            setBookPurpose(null)
+            setTitle(null)
+
+            //***********Here I HAVE TO REFRESH THE BOOK LIST************ */
+        })
+        .catch(err => console.log(err))
     }
 
     const handlePurpose = (e) => {

@@ -42,6 +42,11 @@ const bookSchema = new Schema(
         type: Boolean,
         required: true,
         unique: false
+    },
+    user : {
+        type: String,
+        required: true,
+        unique: false
     }
   },
   {
