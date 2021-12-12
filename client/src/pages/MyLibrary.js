@@ -1,8 +1,9 @@
 import React, { useState, useContext } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+// import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import {AuthContext} from '../context/auth'
 import Book from '../components/Book'
+import FindBook from '../components/FindBook'
 
 export default function MyLibrary() {
     const [isbn, setIsbn] = useState('')
@@ -98,25 +99,11 @@ export default function MyLibrary() {
 
     
     return (
-        <div>
-            My library
-            <form onSubmit={handleSubmit} className="signup-form">
-				<label>ISBN: </label>
-				<input type="text" name="isbn" value={isbn} onChange={handleIsbn} />
-                <button type="submit">Find Book</button>
-			</form>
+        <div className='addBookPage'>
+            <FindBook handleSubmit={handleSubmit} isbn={isbn} handleIsbn={handleIsbn}/>
            
-            {title && author && language && <Book title={title} author={author} language={language} description={description} image={image} handleStoreToMyDB={handleStoreToMyDB}/> }
-            
-            {title && author && language &&  
-            <div onChange={handlePurpose}>
-                <input type="radio" value="GiveAway" name="gender" /> Give Away
-                <input type="radio" value="Exchange" name="gender" /> Exchange
-                <input type="radio" value="TradeForAPeriod" name="gender" /> Trade for a short period
-            </div> }
-            
-            {title && author && language && <button onClick={handleStoreToMyDB}>Add it to my Library</button>}
-
+            {title && author && language && <Book title={title} author={author} language={language} description={description} image={image} handleStoreToMyDB={handleStoreToMyDB} handlePurpose={handlePurpose}/> }
+                   
         </div>
     )
 }

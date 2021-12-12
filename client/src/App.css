@@ -25,6 +25,10 @@
   color: white;
 }
 
+.headingOne{
+  margin: 40px 0 30px 0;
+}
+
 .App-link {
   color: #61dafb;
 }
@@ -46,20 +50,64 @@ form.signup-form {
 .drop-towns {
   position: relative;
   background-position-x: center;
+  background-color: white;
+  color: #282c34;
+  font-size: medium;
 }
 .child-towns:hover {
-  background-color: black;
+  background-color: #282c34;
   color: white;
   transition: 0.5s;
 }
-
 .navbar {
-  background-color: black;
+  background-color: #dc3545;
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-end!important;
   padding: 10px 0 10px 0;
 }
 .navbarItem {
   margin-right: 10px;
   color: black;
+}
+
+/* //NavBAR */
+.sidebar {
+  background-color: #282c34;
+}
+
+.menuLinks {
+  color: azure!important;
+  text-decoration: none;
+}
+
+.menuLinks:hover {
+  color: #dc3545!important;
+}
+#dropdown {
+  color: azure;
+}
+#dropdown:focus {
+  color: #dc3545;
+}
+
+.searchIsbn {
+  margin: 30px 0 30px 20px;
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.addBookPage {
+  display: flex;
+  flex-direction: column;
+}
+
+.addProperties {
+  display: flex;
+  flex-direction: column;
+  
+}
+.card{
+  margin: 30px 0 30px 20px;
 }

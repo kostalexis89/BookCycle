@@ -49,8 +49,8 @@ export default function Login() {
 	}
 	
 	return (
-		<div>
-			<h1>Signup</h1>
+		<div className="App-header">
+			<h1>Log In</h1>
 			<form onSubmit={handleSubmit} className="signup-form">
 			
              
