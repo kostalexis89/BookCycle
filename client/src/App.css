@@ -118,3 +118,8 @@ form.signup-form {
   justify-content: flex-start;
   align-items: center;
 }
+
+.my-library-right-column {
+  background-color: #282c34;
+  color: #dc3545;
+}

@@ -110,9 +110,19 @@ export default function MyLibrary() {
             
                 {title && author && language && <Book title={title} author={author} language={language} description={description} image={image} handleStoreToMyDB={handleStoreToMyDB} handlePurpose={handlePurpose}/>}
             </Col>
-            <Col sm={8}></Col>
+            <Col className='my-library-right-column' sm={8}>
+                <Row>
+                    <h2>My Books to Give Away</h2>
+                </Row>
+                <Row>
+                    <h2>My Books for Exchange</h2>
+                </Row>
+                <Row>
+                    <h2>My Books for short trade period</h2>
+                </Row>
+            </Col>
             </Row>
             </Container>
        
     )
-} 
+}
