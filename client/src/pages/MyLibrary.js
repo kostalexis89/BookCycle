@@ -18,12 +18,13 @@ export default function MyLibrary() {
     const [language, setLanguage] = useState(null)
     const [bookPurpose, setBookPurpose] = useState(null)
     const {isLoggedIn, user} = useContext(AuthContext)
-    
+    const [refresh, setRefresh] = useState(false)
 
 //    console.log(user)
     const handleStoreToMyDB = (e) =>{
         // console.log('I am adding it')
         e.preventDefault()
+        // if(description)
         const requestBody = {title: title, description: description, author: author, image: image, language: language, town: user.town, purpose: bookPurpose, available: true, user: user._id}
         axios.post('/books/add', requestBody)
         .then(response=> {
@@ -39,6 +40,7 @@ export default function MyLibrary() {
             //***********Here I HAVE TO REFRESH THE BOOK LIST************ */
         })
         .catch(err => console.log(err))
+        setRefresh(true)
     }
 
     const handlePurpose = (e) => {
@@ -106,7 +108,7 @@ export default function MyLibrary() {
         
             <Container>
             <Row>
-            <Col sm={4}>
+            <Col className='my-library-left-column' sm={4}>
                 <FindBook handleSubmit={handleSubmit} isbn={isbn} handleIsbn={handleIsbn}/>
             
                 {title && author && language && <Book title={title} author={author} language={language} description={description} image={image} handleStoreToMyDB={handleStoreToMyDB} handlePurpose={handlePurpose}/>}
@@ -114,7 +116,7 @@ export default function MyLibrary() {
             <Col className='my-library-right-column' sm={8}>
                 <Row>
                     <h2>My Books to Give Away</h2>
-                    <GiveAwaySlider user={user} purpose="GiveAway"/>
+                    <GiveAwaySlider user={user}  refresh={refresh} setRefresh={setRefresh} purpose="GiveAway"/>
                 </Row>
                 <Row>
                     <h2>My Books for Exchange</h2>

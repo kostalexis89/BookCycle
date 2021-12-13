@@ -7,8 +7,8 @@ export default function Book({title, description, image, author, language, town}
     
     return (
         
-        <div>
-            <Card style={{ width: '18rem' }}>
+        <div className="book-card" >
+            <Card style={{ width: '14rem' }}>
             <Card.Img variant="top" src={image} />
             <Card.Body>
                 <Card.Title>{title}</Card.Title>

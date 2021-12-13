@@ -123,3 +123,11 @@ form.signup-form {
   background-color: #282c34;
   color: #dc3545;
 }
+
+.my-library-left-column {
+  background-color: aliceblue;
+}
+
+header {
+  background-color: #dc3545;
+}

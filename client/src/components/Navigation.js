@@ -4,9 +4,9 @@ import {useContext} from 'react'
 import { AuthContext } from '../context/auth'
 import Navbar from 'react-bootstrap/Navbar'
 import { Offcanvas } from 'react-bootstrap'
-import { Container } from 'react-bootstrap'
-import { NavDropdown } from 'react-bootstrap'
-import { Nav } from 'react-bootstrap'
+import Container from 'react-bootstrap/Container'
+import NavDropdown from 'react-bootstrap/NavDropdown'
+import Nav from 'react-bootstrap/Nav'
 
 export default function Navigation() {
 
