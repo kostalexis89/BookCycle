@@ -2,6 +2,8 @@ import React, { useState, useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import {AuthContext} from '../context/auth'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
 // import { Form, Input, Button } from 'antd';
 // import PlacesAutocomplete, {
 // 	geocodeByAddress,
@@ -49,22 +51,30 @@ export default function Login() {
 	}
 	
 	return (
-		<div className="App-header">
-			<h1>Log In</h1>
-			<form onSubmit={handleSubmit} className="signup-form">
-			
-             
-				<label>Email: </label>
-				<input type="text" name="email" value={email} onChange={handleEmail} />
-				<label>Password: </label>
-				<input type="password" value={password} onChange={handlePassword} />
-				<button type="submit">Login</button>
-			</form>
+		<div className="App-header App">
+			<h1 className='headingOne'>Log In</h1>
+				<Form onSubmit={handleSubmit}>			
+					<Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>Email address</Form.Label>
+                    <Form.Control type="email" placeholder="Enter email" value={email} onChange={handleEmail} />
+            	</Form.Group>
+				<Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control type="password" placeholder="Password" value={password} onChange={handlePassword} />
+                </Form.Group>
+				<Button variant="danger" type="submit">
+                    Log In
+                </Button>
+				{errorMessage && <p>{errorMessage}</p>}
+				<Form.Group>
+				<Form.Text className="text-muted">Don't have an account?</Form.Text><br></br>
+				<Button variant="danger">
+				<Link id='signup-btn' to='/signup'>Sign up</Link></Button></Form.Group>
+				</Form>
 				
-			{errorMessage && <p>{errorMessage}</p>}
+			
 
-			<p>Don't have an account?</p>
-			<Link to='/signup'>Sign up</Link>
+			
 		</div>
 	)
 }

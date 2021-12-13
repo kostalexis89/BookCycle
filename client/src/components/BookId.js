@@ -1,5 +1,6 @@
-import React from "react";
+import React ,{useContext} from "react";
 import Button from 'react-bootstrap/Button'
+import {AuthContext} from '../context/auth'
 
 export default function BookId({
   title,
@@ -10,6 +11,9 @@ export default function BookId({
   town,
   bookId,
 }) {
+    const {isLoggedIn, user} = useContext(AuthContext)
+    console.log(user._id)
+    console.log(bookId)
   return (
     <div className="modal-wrapper">
       <div className="image-wrapper">
@@ -24,8 +28,9 @@ export default function BookId({
         <p>{description}</p>
 
         <div className="button-wrapper">
-        <Button variant="danger">Button 1</Button>
-        <Button variant="danger">Button 1</Button>
+        {user._id===bookId && <><Button variant="danger">Edit Purpose or availability</Button>
+        <Button variant="danger">Delete from your Collection</Button></>}
+        
         </div>
       </div>
     </div>

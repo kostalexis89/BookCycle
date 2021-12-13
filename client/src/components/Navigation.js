@@ -17,6 +17,7 @@ const {isLoggedIn, user, logoutUser} = useContext(AuthContext)
         <Navbar bg="dark" expand={false} variant="dark">
   <Container fluid>
     <Navbar.Brand href="#">BookCycle</Navbar.Brand>
+    {isLoggedIn && <Navbar.Brand>Welcome {user.username} </Navbar.Brand>}
     <Navbar.Toggle aria-controls="offcanvasNavbar" />
     <Navbar.Offcanvas
       id="offcanvasNavbar"
@@ -43,7 +44,7 @@ const {isLoggedIn, user, logoutUser} = useContext(AuthContext)
                     Pending Requests
                 </NavDropdown.Item>
             </NavDropdown>
-            <Link to="#" className="menuLinks" onClick={logoutUser}>Logout</Link>
+            <Link to="/" className="menuLinks" onClick={logoutUser}>Logout</Link>
             </>
           ) : (
               <>
