@@ -4,6 +4,9 @@ import axios from 'axios'
 import {AuthContext} from '../context/auth'
 import Book from '../components/Book'
 import FindBook from '../components/FindBook'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 export default function MyLibrary() {
     const [isbn, setIsbn] = useState('')
@@ -99,11 +102,17 @@ export default function MyLibrary() {
 
     
     return (
-        <div className='addBookPage'>
-            <FindBook handleSubmit={handleSubmit} isbn={isbn} handleIsbn={handleIsbn}/>
-           
-            {title && author && language && <Book title={title} author={author} language={language} description={description} image={image} handleStoreToMyDB={handleStoreToMyDB} handlePurpose={handlePurpose}/> }
-                   
-        </div>
+        
+            <Container>
+            <Row>
+            <Col sm={4}>
+                <FindBook handleSubmit={handleSubmit} isbn={isbn} handleIsbn={handleIsbn}/>
+            
+                {title && author && language && <Book title={title} author={author} language={language} description={description} image={image} handleStoreToMyDB={handleStoreToMyDB} handlePurpose={handlePurpose}/>}
+            </Col>
+            <Col sm={8}></Col>
+            </Row>
+            </Container>
+       
     )
 }

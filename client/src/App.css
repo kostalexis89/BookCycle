@@ -111,3 +111,10 @@ form.signup-form {
 .card{
   margin: 30px 0 30px 20px;
 }
+
+.radio-select {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
