@@ -122,6 +122,7 @@ form.signup-form {
 .my-library-right-column {
   background-color: #282c34;
   color: #dc3545;
+  padding-top: 20px;
 }
 
 .my-library-left-column {
@@ -130,4 +131,14 @@ form.signup-form {
 
 header {
   background-color: #dc3545;
+}
+
+.headers-h2 {
+ display: flex;
+ justify-content: center;
+}
+.headers-container {
+  background-color: aliceblue;
+  padding: 5px 10px 5px 10px;
+  border-radius: 5px;
 }

@@ -33,7 +33,6 @@ const {isLoggedIn, user, logoutUser} = useContext(AuthContext)
           {isLoggedIn ? (
               <>
             <NavDropdown title="My BookCycle" id="dropdown">
-                <Link to='/myLibrary' className='dropdown-item'>Add New</Link>
                 <Link to='/myLibrary' className='dropdown-item'>My Library</Link>
 
                 <NavDropdown.Divider />

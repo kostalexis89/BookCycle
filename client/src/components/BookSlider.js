@@ -1,10 +1,10 @@
-import React, { useState, useEffect ,useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import BookCard from './BookCard'
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
-export default function BookListSlider({user, purpose,refresh, setRefresh}) {
+export default function BookSlider({user, purpose,refresh, setRefresh}) {
     const responsive = {
         desktop: {
           breakpoint: { max: 3000, min: 1024 },
@@ -39,14 +39,14 @@ export default function BookListSlider({user, purpose,refresh, setRefresh}) {
 
     const displayBook = BookList.map(book => {
         return (
-            <div>
+            <div id='book.title'>
                 <BookCard title={book.title} description={book.description} image={book.image} author = {book.author} language={book.language} town = {book.town}/>
                 {/* {book.title} */}
             </div>
         )
     })
 
-    console.log('My list for ' + purpose + ' ' + BookList)
+    // console.log('My list for ' + purpose + ' ' + BookList)
     return (
         <div>
 

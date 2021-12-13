@@ -7,7 +7,7 @@ import FindBook from '../components/FindBook'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import GiveAwaySlider from '../components/GiveAwaySlider'
+import BookSlider from '../components/BookSlider'
 
 export default function MyLibrary() {
     const [isbn, setIsbn] = useState('')
@@ -65,7 +65,7 @@ export default function MyLibrary() {
             // console.log(getDataApi)
             axios.get(getDataApi)
             .then(res=> {
-                console.log(res.data)
+                // console.log(res.data)
                 //FOR AUTHOR
                 const getAuthorApi = `https://openlibrary.org${res.data.authors[0].author.key}.json`
                 axios.get(getAuthorApi)
@@ -115,16 +115,16 @@ export default function MyLibrary() {
             </Col>
             <Col className='my-library-right-column' sm={8}>
                 <Row>
-                    <h2>My Books to Give Away</h2>
-                    <GiveAwaySlider user={user}  refresh={refresh} setRefresh={setRefresh} purpose="GiveAway"/>
+                    <h2 className='headers-h2'><span className='headers-container'>My Books to Give Away</span></h2>
+                    <BookSlider user={user}  refresh={refresh} setRefresh={setRefresh} purpose="GiveAway"/>
                 </Row>
                 <Row>
-                    <h2>My Books for Exchange</h2>
-                    <GiveAwaySlider user={user} purpose="Exchange"/>
+                    <h2 className='headers-h2'><span className='headers-container'>My Books for Exchange</span></h2>
+                    <BookSlider refresh={refresh} setRefresh={setRefresh} user={user} purpose="Exchange"/>
                 </Row>
                 <Row>
-                    <h2>My Books for short trade period</h2>
-                    <GiveAwaySlider user={user} purpose="TradeForAPeriod"/>
+                    <h2 className='headers-h2'><span className='headers-container'>My Books for short trade period</span></h2>
+                    <BookSlider  refresh={refresh} setRefresh={setRefresh}user={user} purpose="TradeForAPeriod"/>
                 </Row>
             </Col>
             </Row>
