@@ -12,7 +12,7 @@ export default function Navigation() {
 
 const {isLoggedIn, user, logoutUser} = useContext(AuthContext)
 
-    console.log(user)
+    // console.log(user)
     return (
         <Navbar bg="dark" expand={false} variant="dark">
   <Container fluid>

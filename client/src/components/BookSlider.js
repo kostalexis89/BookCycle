@@ -38,9 +38,11 @@ export default function BookSlider({user, purpose,refresh, setRefresh}) {
     },[refresh])
 
     const displayBook = BookList.map(book => {
+        console.log(book)
         return (
             <div id='book.title'>
-                <BookCard title={book.title} description={book.description} image={book.image} author = {book.author} language={book.language} town = {book.town}/>
+                
+                <BookCard title={book.title} description={book.description} image={book.image} author = {book.author} language={book.language} town = {book.town} bookId={book.user}/>
                 {/* {book.title} */}
             </div>
         )

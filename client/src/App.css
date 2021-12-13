@@ -142,3 +142,41 @@ header {
   padding: 5px 10px 5px 10px;
   border-radius: 5px;
 }
+
+
+.modal-wrapper {
+  display: flex;
+  background-color: #282c34;
+  color: aliceblue;
+}
+
+
+.info-wrapper {
+  display: flex;
+  margin: 10px;
+  flex-direction: column;
+}
+
+.popup-content  {
+  width: 70%!important;
+}
+.title-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-bottom: 1rem;
+  justify-content: space-between;
+}
+
+h3 {
+  font-size: 25px!important;
+}
+.button-wrapper {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  height: 100%;
+  align-items: flex-end;
+
+}
+
