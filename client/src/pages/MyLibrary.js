@@ -7,6 +7,7 @@ import FindBook from '../components/FindBook'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import GiveAwaySlider from '../components/GiveAwaySlider'
 
 export default function MyLibrary() {
     const [isbn, setIsbn] = useState('')
@@ -113,12 +114,15 @@ export default function MyLibrary() {
             <Col className='my-library-right-column' sm={8}>
                 <Row>
                     <h2>My Books to Give Away</h2>
+                    <GiveAwaySlider user={user} purpose="GiveAway"/>
                 </Row>
                 <Row>
                     <h2>My Books for Exchange</h2>
+                    <GiveAwaySlider user={user} purpose="Exchange"/>
                 </Row>
                 <Row>
                     <h2>My Books for short trade period</h2>
+                    <GiveAwaySlider user={user} purpose="TradeForAPeriod"/>
                 </Row>
             </Col>
             </Row>

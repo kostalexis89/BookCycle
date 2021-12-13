@@ -11,4 +11,17 @@ router.post('/add', (req, res, next) => {
     .catch(err => next(err))
 })
 
+router.post('/mycollection', (req, res, next) => {
+    console.log('I am searching')
+    const {userId, purpose} = req.body
+    console.log('This is ' + userId)
+    Book.find({
+        user: userId,
+        purpose: purpose
+    })
+    .then(response => {
+        res.status(200).json(response)
+    })
+})
+
 module.exports = router
