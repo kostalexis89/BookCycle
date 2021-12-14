@@ -24,4 +24,12 @@ router.post('/mycollection', (req, res, next) => {
     })
 })
 
+router.delete('/delete/:id', (req,res,next) => {
+    Book.findByIdAndDelete(req.params.id)
+    .then(()=> {
+        res.status(200).json({ message: 'Book deleted from my Collection' })
+    })
+
+})
+
 module.exports = router

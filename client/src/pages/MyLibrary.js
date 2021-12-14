@@ -40,7 +40,7 @@ export default function MyLibrary() {
             //***********Here I HAVE TO REFRESH THE BOOK LIST************ */
         })
         .catch(err => console.log(err))
-        setRefresh(true)
+        setRefresh(!refresh)
     }
 
     const handlePurpose = (e) => {
