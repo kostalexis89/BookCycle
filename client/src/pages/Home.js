@@ -1,11 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { AuthContext } from "../context/auth";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import axios from "axios";
-import BookCard from "../components/BookCard";
-import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import BookSliderForHome from "../components/BookSliderForHome";
 import BookSliderForHomeByTown from "../components/BookSliderForHomeByTown";

@@ -17,7 +17,7 @@ export default function MyLibrary() {
     const [image, setImage] = useState(null)
     const [language, setLanguage] = useState(null)
     const [bookPurpose, setBookPurpose] = useState(null)
-    const {isLoggedIn, user} = useContext(AuthContext)
+    const { user} = useContext(AuthContext)
     const [refresh, setRefresh] = useState(false)
 
 //    console.log(user)

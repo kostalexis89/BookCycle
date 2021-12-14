@@ -3,7 +3,6 @@ import axios from 'axios'
 import BookCard from './BookCard'
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import { useAccordionButton } from 'react-bootstrap';
 
 export default function BookSliderForHomeByTown({ user, town}) {
   const responsive = {
@@ -29,7 +28,7 @@ export default function BookSliderForHomeByTown({ user, town}) {
   useEffect(() => {
     // console.log('I am searching')
     // console.log(user._id)
-    const userId = user;
+
     axios
       .post("books/town", { user: user, town:town })
       .then((response) => {
