@@ -8,61 +8,15 @@ import BookCard from "../components/BookCard";
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import BookSliderForHome from "../components/BookSliderForHome";
+import BookSliderForHomeByTown from "../components/BookSliderForHomeByTown";
 
 export default function Home() {
-  const [BookListByTown, setBookListByTown] = useState([]);
-  const [town, setTown] = useState('Berlin, Germany')
+ 
   const { user } = useContext(AuthContext);
   // console.log(user)
 
-  const responsive = {
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 3,
-      partialVisibilityGutter: 40, // this is needed to tell the amount of px that should be visible.
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2,
-      partialVisibilityGutter: 30, // this is needed to tell the amount of px that should be visible.
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
-      partialVisibilityGutter: 30, // this is needed to tell the amount of px that should be visible.
-    },
-  };
 
-  useEffect(() => {
-    // setTown(user.town)
-    axios.post("books/town", { town: town, user: user._id })
-      .then((response) => {
-        setBookListByTown(response.data)
-      })
-      .catch((err) => console.log(err));
-
-     
-  }, []);
-
-  const displayListByTown = BookListByTown.map((book) => {
-    // console.log(book)
-    return (
-      <div key="book._id">
-        <BookCard
-          title={book.title}
-          description={book.description}
-          image={book.image}
-          author={book.author}
-          language={book.language}
-          town={book.town}
-          usersBookId={book.user}
-          bookId={book._id}
-        />
-        {/* {book.title} */}
-      </div>
-    );
-  });
-
+ 
   return (
     <>
       {user ? (
@@ -76,13 +30,8 @@ export default function Home() {
               </h2>
 
               <Col>
-                <Carousel
-                  partialVisible={true}
-                  responsive={responsive}
-                  infinite={true}
-                >
-                  {displayListByTown}
-                </Carousel>{" "}
+                <BookSliderForHomeByTown user={user._id} town={user.town}/>
+                {" "}
               </Col>
             </Row>
             <Row>
