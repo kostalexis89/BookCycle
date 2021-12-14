@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const Book = require('../models/Book.model')
+const userEditAccess = require("../middleware/userEditAccess");
 
 //create a book 
 router.post('/add', (req, res, next) => {
@@ -24,11 +25,30 @@ router.post('/mycollection', (req, res, next) => {
     })
 })
 
-router.delete('/delete/:id', (req,res,next) => {
+router.post('/delete/:id',userEditAccess, (req,res,next) => {
+    
+
+
     Book.findByIdAndDelete(req.params.id)
     .then(()=> {
         res.status(200).json({ message: 'Book deleted from my Collection' })
     })
+
+})
+
+router.post('/edit/:id',userEditAccess, (req, res, next) => {
+    const {purpose} = req.body
+    console.log(req.body)
+    console.log('I am trying to edit now')
+    const id = req.params.id
+    console.log(id)
+    Book.findByIdAndUpdate(id, {
+        purpose: purpose
+    }, {new: true})
+    .then(updatedBook => {
+        res.status(200).json(updatedBook)
+    })
+    .catch(err => next(err))
 
 })
 

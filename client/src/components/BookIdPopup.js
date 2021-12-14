@@ -3,6 +3,7 @@ import React ,{useContext, useState} from "react";
 import Button from 'react-bootstrap/Button'
 import {AuthContext} from '../context/auth'
 import { useNavigate } from 'react-router-dom'
+import Spinner from 'react-bootstrap/Spinner'
 
 export default function BookIdPopup({
   title,
@@ -16,15 +17,25 @@ export default function BookIdPopup({
   setRefresh,
   refresh
 }) {
-     let navigate = useNavigate();
+ 
+    const [showEditBtn, setShowEditBtn] = useState(true)
+    const [purpose, setPurpose] = useState ('')
+    let navigate = useNavigate();
     const {isLoggedIn, user} = useContext(AuthContext)
     const [viewPopup, setViewPopup] = useState(true)
     // console.log(user._id)
     // console.log(bookId)
+    const handleEditPurposeOrAvailability = () => {
+      setShowEditBtn(!showEditBtn)
+      
+    }
 
     const handleDeleteFromCollection =() =>{
-      console.log(bookId)
-      axios.delete(`books/delete/${bookId}`)
+      console.log(user._id)
+      const userId = user._id
+      const bookOwner = usersBookId
+      console.log(bookOwner)
+      axios.post(`books/delete/${bookId}`, {userId, bookOwner})
       .then(() => {
         setRefresh(!refresh)
         setViewPopup(false)
@@ -33,6 +44,27 @@ export default function BookIdPopup({
       .catch(err => console.log(err))
       
     }
+
+  const handlePurpose = (e) => {
+      setPurpose(e.target.value)
+      // console.log(e.target.value)
+  }
+
+  const handleUpdatePurpose = () => {
+    console.log('I am handling')
+    if(purpose!==''){
+      const userId = user._id
+      const bookOwner = usersBookId
+      axios.post(`/books/edit/${bookId}`, {userId, bookOwner, purpose})
+      .then(() => {
+        setRefresh(!refresh)
+        setViewPopup(false)
+        // navigate('/')
+      })
+    }
+    console.log(purpose)
+    
+  }
 
   return (
     <>
@@ -49,12 +81,18 @@ export default function BookIdPopup({
       <p>{description}</p>
 
       <div className="button-wrapper">
-      {user._id===usersBookId && <><Button variant="danger">Edit Purpose or availability</Button>
+      {user._id===usersBookId && <>{ showEditBtn ? <Button variant="danger" onClick={handleEditPurposeOrAvailability}>Edit Purpose or availability</Button> : 
+      <div className="addProperties" onClick={handlePurpose}>
+                    <span className='radio-select'><input type="radio" value="GiveAway" name="gender" id='giveaway' /> <label htmlFor='giveaway'>Give Away</label></span>
+                    <span className='radio-select'><input type="radio" value="Exchange" name="gender" id='exchange' /> <label htmlFor='exchange'>Exchange</label></span>
+                    <span className='radio-select'><input type="radio" value="TradeForAPeriod" name="gender" id='shortTrade' /><label htmlFor='shortTrade' >Short Trade</label></span>
+                    <Button variant="danger" onClick={handleUpdatePurpose}>Update Purpose</Button>
+      </div>}
       <Button variant="danger" onClick={handleDeleteFromCollection}>Delete from your Collection</Button></>}
       
       </div>
     </div>
-  </div> : <h2>Book deleted from my Collection</h2>}</>
+  </div> : <Spinner animation="grow"></Spinner>}</>
     
   );
 }
