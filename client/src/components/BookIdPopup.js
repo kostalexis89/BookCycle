@@ -2,7 +2,7 @@ import axios from "axios";
 import React ,{useContext, useState} from "react";
 import Button from 'react-bootstrap/Button'
 import {AuthContext} from '../context/auth'
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 import Spinner from 'react-bootstrap/Spinner'
 
 export default function BookIdPopup({
@@ -20,8 +20,8 @@ export default function BookIdPopup({
  
     const [showEditBtn, setShowEditBtn] = useState(true)
     const [purpose, setPurpose] = useState ('')
-    let navigate = useNavigate();
-    const {isLoggedIn, user} = useContext(AuthContext)
+    // let navigate = useNavigate();
+    const { user} = useContext(AuthContext)
     const [viewPopup, setViewPopup] = useState(true)
     // console.log(user._id)
     // console.log(bookId)
@@ -70,7 +70,7 @@ export default function BookIdPopup({
     <>
     {viewPopup ? <div className="modal-wrapper">
     <div className="image-wrapper">
-      <img src={image} />
+      <img src={image} alt={title}/>
     </div>
     <div className="info-wrapper">
       <div className="title-wrapper">

@@ -42,7 +42,7 @@ export default function BookSliderForHome({purpose, user, town}) {
   const displayBook = BookList.map((book) => {
     // console.log(book)
     return (
-      <div id="book.title">
+      <div key="book._id">
         <BookCard
           title={book.title}
           description={book.description}
