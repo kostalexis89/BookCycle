@@ -54,8 +54,16 @@ router.post('/edit/:id',userEditAccess, (req, res, next) => {
 
 router.post('/town', (req, res, next) => {
     const {town, user} = req.body
-    console.log(user)
+    // console.log(user)
     Book.find({$and: [{town:town}, {user: {$ne:user}}]})
+    .then(response => {
+        res.status(200).json(response)
+    })
+})
+
+router.post('/byPurpose', (req, res, next) => {
+    const {town, user, purpose} = req.body
+    Book.find({$and: [{town:town}, {purpose: purpose}, {user: {$ne:user}}]})
     .then(response => {
         res.status(200).json(response)
     })

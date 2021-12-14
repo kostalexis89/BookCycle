@@ -7,6 +7,7 @@ import axios from "axios";
 import BookCard from "../components/BookCard";
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import BookSliderForHome from "../components/BookSliderForHome";
 
 export default function Home() {
   const [BookListByTown, setBookListByTown] = useState([]);
@@ -87,18 +88,34 @@ export default function Home() {
             <Row>
               <h2 className="headers-h2-home">
                 <span className="headers-container">
-                  Books accross {user.town}
+                  Give Away Books in {user.town}
                 </span>
               </h2>
 
               <Col>
-                <Carousel
-                  partialVisible={true}
-                  responsive={responsive}
-                  infinite={true}
-                >
-                  {displayListByTown}
-                </Carousel>{" "}
+                <BookSliderForHome purpose="GiveAway" user={user._id} town={user.town}/>{" "}
+              </Col>
+            </Row>
+            <Row>
+              <h2 className="headers-h2-home">
+                <span className="headers-container">
+                  Exchange Books among {user.town}
+                </span>
+              </h2>
+
+              <Col>
+                <BookSliderForHome purpose="Exchange" user={user._id} town={user.town}/>{" "}
+              </Col>
+            </Row>
+            <Row>
+              <h2 className="headers-h2-home">
+                <span className="headers-container">
+                  Trade Books for Short Period in {user.town}
+                </span>
+              </h2>
+
+              <Col>
+                <BookSliderForHome purpose="TradeForAPeriod" user={user._id} town={user.town}/>{" "}
               </Col>
             </Row>
           </Container>
