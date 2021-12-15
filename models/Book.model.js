@@ -1,5 +1,5 @@
 const { Schema, model } = require("mongoose");
-// const User = require('./User.model');
+const User = require('./User.model');
 
 
 const bookSchema = new Schema(
@@ -45,9 +45,9 @@ const bookSchema = new Schema(
         unique: false
     },
     user : {
-        type: String,
-        required: true,
-        unique: false
+      type: Schema.Types.ObjectId,
+      // this is the name of the model that the _id refers to 
+      ref: 'User'
     }
   },
   {

@@ -15,7 +15,8 @@ export default function BookIdPopup({
   usersBookId,
   bookId,
   setRefresh,
-  refresh
+  refresh,
+  owner
 }) {
  
     const [showEditBtn, setShowEditBtn] = useState(true)
@@ -79,7 +80,7 @@ export default function BookIdPopup({
         <h3>language: {language}</h3>
       </div>
       <p>{description}</p>
-
+      <h5>Owner {owner}</h5>
       <div className="button-wrapper">
       {user._id===usersBookId && <>{ showEditBtn ? <Button variant="danger" onClick={handleEditPurposeOrAvailability}>Edit Purpose or availability</Button> : 
       <div className="addProperties" onClick={handlePurpose}>

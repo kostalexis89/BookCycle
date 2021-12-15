@@ -51,6 +51,7 @@ export default function BookSliderForHome({purpose, user, town}) {
           town={book.town}
           usersBookId={book.user}
           bookId={book._id}
+          owner={book.user.username}
         />
         {/* {book.title} */}
       </div>

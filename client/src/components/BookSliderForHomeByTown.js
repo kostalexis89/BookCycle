@@ -39,6 +39,7 @@ export default function BookSliderForHomeByTown({ user, town}) {
   }, []);
 
   const displayBook = BookList.map((book) => {
+    // console.log(book.user)
     // console.log(book)
     return (
       <div key="book._id">
@@ -51,6 +52,7 @@ export default function BookSliderForHomeByTown({ user, town}) {
           town={book.town}
           usersBookId={book.user}
           bookId={book._id}
+          owner = {book.user.username}
         />
         {/* {book.title} */}
       </div>

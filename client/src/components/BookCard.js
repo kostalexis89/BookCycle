@@ -4,7 +4,7 @@ import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import BookIdPopup from './BookIdPopup';
 
-export default function Book({title, description, image, author, language, town, usersBookId, bookId, setRefresh, refresh}) {
+export default function Book({title, description, image, author, language, town, usersBookId, bookId, setRefresh, refresh, owner}) {
     const [shortDescr] = useState(description.slice(0,(100 - title.length+author.length+language.length+town.length))+"...")
     
     return (
@@ -21,7 +21,7 @@ export default function Book({title, description, image, author, language, town,
         
         </Card>
     </div>} modal>
-    <BookIdPopup title={title} description={description} image={image} author={author} language={language} town={town} usersBookId={usersBookId} bookId={bookId} setRefresh={setRefresh} refresh={refresh} />
+    <BookIdPopup title={title} description={description} image={image} author={author} language={language} town={town} usersBookId={usersBookId} bookId={bookId} setRefresh={setRefresh} refresh={refresh} owner={owner} />
         </Popup>
     )
 }

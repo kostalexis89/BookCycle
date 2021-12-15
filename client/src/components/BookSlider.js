@@ -32,6 +32,7 @@ export default function BookSlider({user, purpose,refresh, setRefresh}) {
         axios.post('books/mycollection', {userId: userId, purpose: purpose})
         .then(response=> {
             // console.log(response.data)
+            // console.log(response)
             setBookList(response.data)
         })
         .catch(err => console.log(err))
@@ -42,7 +43,7 @@ export default function BookSlider({user, purpose,refresh, setRefresh}) {
         return (
             <div key='book._id'>
                 
-                <BookCard title={book.title} description={book.description} image={book.image} author = {book.author} language={book.language} town = {book.town} usersBookId={book.user} bookId={book._id} setRefresh={setRefresh} refresh={refresh}/>
+                <BookCard title={book.title} description={book.description} image={book.image} author = {book.author} language={book.language} town = {book.town} usersBookId={book.user._id} bookId={book._id} setRefresh={setRefresh} refresh={refresh} owner={book.user.username}/>
                 {/* {book.title} */}
             </div>
         )
