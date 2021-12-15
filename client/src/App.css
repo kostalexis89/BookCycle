@@ -209,3 +209,12 @@ h3 {
   display: flex;
   padding-top: 50px;
 }
+
+.send-form {
+  width: 400px;
+}
+
+.message-btns {
+  display: flex;
+  justify-content: space-between;
+}

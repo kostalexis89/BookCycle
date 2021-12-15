@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button'
 import {AuthContext} from '../context/auth'
 // import { useNavigate } from 'react-router-dom'
 import Spinner from 'react-bootstrap/Spinner'
+import RequestSection from "./RequestSection";
 
 export default function BookIdPopup({
   title,
@@ -16,7 +17,8 @@ export default function BookIdPopup({
   bookId,
   setRefresh,
   refresh,
-  owner
+  owner,
+  ownerId
 }) {
  
     const [showEditBtn, setShowEditBtn] = useState(true)
@@ -26,6 +28,7 @@ export default function BookIdPopup({
     const [viewPopup, setViewPopup] = useState(true)
     // console.log(user._id)
     // console.log(bookId)
+    // console.log(ownerId)
     const handleEditPurposeOrAvailability = () => {
       setShowEditBtn(!showEditBtn)
       
@@ -35,7 +38,7 @@ export default function BookIdPopup({
       console.log(user._id)
       const userId = user._id
       const bookOwner = usersBookId
-      console.log(bookOwner)
+      // console.log(bookOwner)
       axios.post(`books/delete/${bookId}`, {userId, bookOwner})
       .then(() => {
         setRefresh(!refresh)
@@ -82,14 +85,14 @@ export default function BookIdPopup({
       <p>{description}</p>
       <h5>Owner {owner}</h5>
       <div className="button-wrapper">
-      {user._id===usersBookId && <>{ showEditBtn ? <Button variant="danger" onClick={handleEditPurposeOrAvailability}>Edit Purpose or availability</Button> : 
+      {user._id===usersBookId ? <>{ showEditBtn ? <Button variant="danger" onClick={handleEditPurposeOrAvailability}>Edit Purpose or availability</Button> : 
       <div className="addProperties" onClick={handlePurpose}>
                     <span className='radio-select'><input type="radio" value="GiveAway" name="gender" id='giveaway' /> <label htmlFor='giveaway'>Give Away</label></span>
                     <span className='radio-select'><input type="radio" value="Exchange" name="gender" id='exchange' /> <label htmlFor='exchange'>Exchange</label></span>
                     <span className='radio-select'><input type="radio" value="TradeForAPeriod" name="gender" id='shortTrade' /><label htmlFor='shortTrade' >Short Trade</label></span>
                     <Button variant="danger" onClick={handleUpdatePurpose}>Update Purpose</Button>
       </div>}
-      <Button variant="danger" onClick={handleDeleteFromCollection}>Delete from your Collection</Button></>}
+      <Button variant="danger" onClick={handleDeleteFromCollection}>Delete from your Collection</Button></> : <RequestSection owner={owner} ownerId={ownerId} bookId={bookId}/>}
       
       </div>
     </div>

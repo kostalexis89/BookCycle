@@ -2,6 +2,7 @@ const router = require('express').Router()
 const Book = require('../models/Book.model')
 const userEditAccess = require("../middleware/userEditAccess");
 const User = require('../models/User.model')
+const Request = require ('../models/Request.model')
 //create a book 
 router.post('/add', (req, res, next) => {
     const {title, description, author, image, language,town, purpose, available, user} = req.body
@@ -70,4 +71,16 @@ router.post('/byPurpose', (req, res, next) => {
         res.status(200).json(response)
     })
 })
+
+router.post('/sendRequest', (req, res, next) => {
+    const {userId, ownerId, message, bookId} = req.body
+    console.log('user ID', userId)
+    console.log('owner ID',ownerId)
+    Request.create({sender: userId, reciever:ownerId, message, book:bookId})
+    .then(request => {
+        res.status(201).json(request)
+    })
+    .catch(err => next(err))
+})
+
 module.exports = router
