@@ -1,0 +1,47 @@
+const router = require('express').Router()
+const Book = require('../models/Book.model')
+// const userEditAccess = require("../middleware/userEditAccess");
+const User = require('../models/User.model')
+const Request = require ('../models/Request.model')
+
+
+router.post('/sendRequest', (req, res, next) => {
+    const {userId, ownerId, message, bookId} = req.body
+    console.log('user ID', userId)
+    console.log('owner ID',ownerId)
+    Request.create({sender: userId, reciever:ownerId, message, book:bookId})
+    .then(request => {
+        res.status(201).json(request)
+    })
+    .catch(err => next(err))
+})
+
+router.post('/outbox', (req, res, next) => {
+    const {sender} = req.body
+    console.log(sender)
+    Request.find({sender: sender}).populate('book').populate('reciever').populate('sender')
+    .then(request => {
+        res.status(201).json(request)
+    })
+    .catch(err => next(err))
+})
+
+router.post('/send', (req, res, next) => {
+    const {message, requestId} = req.body
+    console.log(message)
+    console.log(requestId)
+    Request.findOneAndUpdate(
+        { _id: requestId }, 
+        { $push: { message: message  } },
+       function (error, success) {
+             if (error) {
+                 console.log(error);
+             } else {
+                 console.log(success);
+             }
+         });
+     
+    
+
+})
+module.exports = router

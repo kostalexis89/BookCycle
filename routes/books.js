@@ -72,15 +72,25 @@ router.post('/byPurpose', (req, res, next) => {
     })
 })
 
-router.post('/sendRequest', (req, res, next) => {
-    const {userId, ownerId, message, bookId} = req.body
-    console.log('user ID', userId)
-    console.log('owner ID',ownerId)
-    Request.create({sender: userId, reciever:ownerId, message, book:bookId})
-    .then(request => {
-        res.status(201).json(request)
-    })
-    .catch(err => next(err))
-})
+// router.post('/sendRequest', (req, res, next) => {
+//     const {userId, ownerId, message, bookId} = req.body
+//     console.log('user ID', userId)
+//     console.log('owner ID',ownerId)
+//     Request.create({sender: userId, reciever:ownerId, message, book:bookId})
+//     .then(request => {
+//         res.status(201).json(request)
+//     })
+//     .catch(err => next(err))
+// })
+
+// router.post('/outbox', (req, res, next) => {
+//     const {sender} = req.body
+//     console.log(sender)
+//     Request.find({sender: sender}).populate('book').populate('reciever').populate('sender')
+//     .then(request => {
+//         res.status(201).json(request)
+//     })
+//     .catch(err => next(err))
+// })
 
 module.exports = router

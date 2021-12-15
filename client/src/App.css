@@ -218,3 +218,9 @@ h3 {
   display: flex;
   justify-content: space-between;
 }
+
+.grid {
+  display: flex;
+  justify-content: space-around;
+}
+

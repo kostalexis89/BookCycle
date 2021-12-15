@@ -20,11 +20,11 @@ export default function RequestSection({owner,ownerId, bookId}) {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        setMessage(user.username + ": " + message)
-        console.log('I am sending the request')
-        console.log('user ID', user._id)
-        console.log('owner ID',ownerId)
-        axios.post('/books/sendRequest', {userId: user._id, ownerId:ownerId, message: message, bookId})
+        // setMessage(user.username + ": " + message)
+        // console.log('I am sending the request')
+        // console.log('user ID', user._id)
+        // console.log('owner ID',ownerId)
+        axios.post('/messages/sendRequest', {userId: user._id, ownerId:ownerId, message: user.username+": "+ message, bookId})
         .then(response => {
             console.log(response)
         })

@@ -28,6 +28,9 @@ app.use("/books", books)
 
 const auth = require("./routes/auth");
 app.use("/auth", auth);
+
+const messages = require("./routes/messages");
+app.use("/messages", messages);
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
 
