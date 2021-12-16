@@ -31,7 +31,7 @@ export default function MyLibrary() {
             // console.log(response)
             setIsbn('')
             setAuthor(null)
-            setDescription(null)
+            setDescription('')
             setImage(null)
             setLanguage(null)
             setBookPurpose(null)
@@ -57,7 +57,7 @@ export default function MyLibrary() {
         axios.get(getWorksApi)
         .then(res => {
             //GETTING THE TITLE
-            // console.log(res.data)
+            console.log(res.data)
             // console.log("title: " + res.data.title)
             setTitle(res.data.title)
             // setTitle(res.data.title)
@@ -65,7 +65,7 @@ export default function MyLibrary() {
             // console.log(getDataApi)
             axios.get(getDataApi)
             .then(res=> {
-                // console.log(res.data)
+                console.log(res.data)
                 //FOR AUTHOR
                 const getAuthorApi = `https://openlibrary.org${res.data.authors[0].author.key}.json`
                 axios.get(getAuthorApi)
@@ -87,7 +87,10 @@ export default function MyLibrary() {
                 // })
                 // .catch(err => console.log(err))
                 //DESCRIPTION
-                setDescription(res.data.description)
+                if(res.data.description!==undefined){
+                    setDescription(res.data.description)
+                }
+                
             })
             .catch(err => console.log(err))
             //language

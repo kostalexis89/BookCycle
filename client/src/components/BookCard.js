@@ -1,11 +1,17 @@
-import React, { useState} from 'react'
+import React, { useState, useEffect} from 'react'
 import Card from 'react-bootstrap/Card'
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import BookIdPopup from './BookIdPopup';
 
 export default function Book({title,ownerId, description, image, author, language, town, usersBookId, bookId, setRefresh, refresh, owner}) {
-    const [shortDescr] = useState(description.slice(0,(100 - title.length+author.length+language.length+town.length))+"...")
+    const [shortDescr,setShortDescr] = useState('')
+    useEffect(()=>{
+        if(description){
+            setShortDescr(description.slice(0,(100 - title.length+author.length+language.length+town.length))+"...")
+        }
+    },[])
+
     return (
         <Popup trigger={<div className="book-card" >
         <Card style={{ width: '14rem' }}>

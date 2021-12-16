@@ -1,10 +1,18 @@
-import React, { useState} from 'react'
+import React, { useState, useEffect} from 'react'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 
 export default function Book({title, description, image, author, language, handleStoreToMyDB, handlePurpose}) {
-    const [shortDescr] = useState(description.slice(0,70)+"...")
     
+    const [shortDescr, setShortDesc] = useState('')
+    
+    useEffect(() => {
+        console.log(description)
+        if(description){
+            setShortDesc(description.slice(0,70)+"...")
+        }
+    },[])
+
     return (
         // <div>
         //     <h1>{title}</h1>

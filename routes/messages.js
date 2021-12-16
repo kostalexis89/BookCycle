@@ -26,6 +26,16 @@ router.post('/outbox', (req, res, next) => {
     .catch(err => next(err))
 })
 
+router.post('/inbox', (req, res, next) => {
+    const {reciever} = req.body
+    console.log("This is the reciever",reciever)
+    Request.find({reciever: reciever}).populate('book').populate('reciever').populate('sender')
+    .then(request => {
+        res.status(201).json(request)
+    })
+    .catch(err => next(err))
+})
+
 router.post('/send', (req, res, next) => {
     const {message, requestId} = req.body
     console.log(message)
@@ -39,9 +49,14 @@ router.post('/send', (req, res, next) => {
              } else {
                  console.log(success);
              }
-         });
-     
-    
+         });    
+})
 
+router.post('/cancel', (req,res,next) => {
+    const {requestId} = req.body
+    Request.findByIdAndDelete(requestId)
+    .then(()=> {
+        res.status(200).json({ message: 'Request Got Cancelled' })
+    })
 })
 module.exports = router
