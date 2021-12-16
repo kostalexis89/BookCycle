@@ -18,8 +18,11 @@ export default function InboxRequests() {
         })
 
     },[refresh])
+   
 
+    
     const requestList = requests.map(request => {
+        // console.log('Request IS',request)
         return (<div key={request.book._id}>
             <RequestBookCard request={request} refresh={refresh} setRefresh={setRefresh}/>
         </div>)

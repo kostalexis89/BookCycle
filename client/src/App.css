@@ -282,3 +282,15 @@ h3 {
   align-items: flex-start!important;
   justify-content: flex-start;
 }
+
+.message-title {
+  display: flex;
+  align-self: center;
+  justify-content: space-evenly;
+ 
+}
+
+.align-right-message {
+  display: flex;
+  justify-content: flex-end;
+}

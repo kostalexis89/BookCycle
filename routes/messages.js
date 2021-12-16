@@ -9,11 +9,20 @@ router.post('/sendRequest', (req, res, next) => {
     const {userId, ownerId, message, bookId} = req.body
     console.log('user ID', userId)
     console.log('owner ID',ownerId)
-    Request.create({sender: userId, reciever:ownerId, message, book:bookId})
-    .then(request => {
-        res.status(201).json(request)
+    // Book.find({$and: [{town:town}, {user: {$ne:user}}]}).populate('user')
+
+    Request.find({$and : [{sender: userId}, {reciever:ownerId}, {book:bookId}]})
+    .then(request=>{
+        // console.log(request)
+        if(request.length===0){
+            Request.create({sender: userId, reciever:ownerId, message, book:bookId})
+            .then(request => {
+                res.status(201).json(request)
+            })
+            .catch(err => next(err))
+        }
     })
-    .catch(err => next(err))
+   
 })
 
 router.post('/outbox', (req, res, next) => {

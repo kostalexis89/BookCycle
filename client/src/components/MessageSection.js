@@ -10,8 +10,10 @@ import Card from "react-bootstrap/Card";
 
 export default function MessageSection({messageHistory,requestId, proposal, requestSender,refresh, setRefresh, requestReciever,sendersBookList}) {
     const [message, setMessage] = useState('')
+    const [proposalBack, setProposalBack] = useState(null)
     const {user} = useContext(AuthContext)
     const [bookForExchange, setBookForExchange] = useState('')
+    const [checked, setChecked] = useState(false)
     const handleMessage = (e) => {
         e.preventDefault()
         setMessage(e.target.value)
@@ -19,17 +21,19 @@ export default function MessageSection({messageHistory,requestId, proposal, requ
     }
     
     const handleRequest = (book) => {
-        console.log(book)
-        setBookForExchange(book)
-        axios.post('/messages/requestexchange', {bookId:book, requestId: requestId})
+        // console.log(book)
+        setBookForExchange(book._id)
+        axios.post('/messages/requestexchange', {bookId:book._id, requestId: requestId})
         .then(response => {
             console.log(response)
         })
+        setChecked(!checked)
+        setProposalBack(book.title)
     }
     const viewSendersBookList = sendersBookList.map(book=>{
         return (
           
-                <Card className='message-card-for-grid' style={{ width: "14rem" }} onClick={() => handleRequest(book._id)}>
+                <Card className='message-card-for-grid' style={{ width: "14rem" }} onClick={() => handleRequest(book)}>
         {/* <Card.Img className='lala' variant="top" src={book.image} /> */}
         <Card.Body>
           <Card.Title>{book.title}</Card.Title>
@@ -90,9 +94,11 @@ export default function MessageSection({messageHistory,requestId, proposal, requ
             </div>
         </Col>
         <Col>
-        {user._id!==requestSender._id && <div className='message-grid'>
+        
+        {user._id!==requestSender._id && <><h2 className='message-title'>Click a Title to Propose ur exchange wish</h2><div className='message-grid'>
+            
             {viewSendersBookList}
-        </div>}
+        </div></>}
         
         {user._id===requestSender._id && <div className='message-grid'>
             {<div className='proposal'>
@@ -109,6 +115,7 @@ export default function MessageSection({messageHistory,requestId, proposal, requ
                                 </Card>}
                                 </div>}
         </div>}
+        {checked && <p className='align-right-message'>Sended a request to {requestSender.username} for {proposalBack}</p>}
         
         </Col>
         </Row>
