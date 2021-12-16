@@ -22,7 +22,7 @@ export default function OutboxRequests() {
     const requestList = requests.map(request => {
         console.log('the proposal is',request.proposal)
         return (<div key={request.book._id}>
-            <RequestBookCard request={request} refresh={refresh} setRefresh={setRefresh}/>
+            <RequestBookCard request={request} refresh={refresh} setRefresh={setRefresh} proposal={request.proposal}/>
         </div>)
     })
 

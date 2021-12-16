@@ -4,7 +4,7 @@ import Popup from "reactjs-popup";
 import MessageSection from "./MessageSection"
 import axios from 'axios'
 
-export default function RequestBookCard({ request,refresh, setRefresh }) {
+export default function RequestBookCard({ request,refresh, setRefresh,proposal }) {
     
     const [sendersBookList, setSendersBookList] = useState([])
 
@@ -39,7 +39,7 @@ export default function RequestBookCard({ request,refresh, setRefresh }) {
           {/* <Card.Text>{shortDescr}</Card.Text> */}
         </Card.Body>
       </Card>
-      </div>} modal><MessageSection sendersBookList={sendersBookList} refresh={refresh} setRefresh={setRefresh} messageHistory={request.message} requestSender={request.sender} requestReciever={request.reciever} requestId={request._id}/></Popup>
+      </div>} modal><MessageSection proposal={proposal} sendersBookList={sendersBookList} refresh={refresh} setRefresh={setRefresh} messageHistory={request.message} requestSender={request.sender} requestReciever={request.reciever} requestId={request._id}/></Popup>
       
     
   );

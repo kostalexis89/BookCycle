@@ -8,7 +8,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Card from "react-bootstrap/Card";
 
-export default function MessageSection({messageHistory,requestId, requestSender,refresh, setRefresh, requestReciever,sendersBookList}) {
+export default function MessageSection({messageHistory,requestId, proposal, requestSender,refresh, setRefresh, requestReciever,sendersBookList}) {
     const [message, setMessage] = useState('')
     const {user} = useContext(AuthContext)
     const [bookForExchange, setBookForExchange] = useState('')
@@ -40,6 +40,8 @@ export default function MessageSection({messageHistory,requestId, requestSender,
             </div>
         )
     })
+
+
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -90,6 +92,20 @@ export default function MessageSection({messageHistory,requestId, requestSender,
         <Col>
         {user._id!==requestSender._id && <div className='message-grid'>
             {viewSendersBookList}
+        </div>}
+        {user._id===requestSender._id && <div className='message-grid'>
+            {<div className='proposal'>
+                                    <h2 className='title-proposal'>{requestReciever.username} is asking for</h2>
+                                    <Card className='message-card-for-grid' style={{ width: "14rem" }}>
+                                {/* <Card.Img className='lala' variant="top" src={book.image} /> */}
+                                <Card.Body>
+                                <Card.Img variant="top" src={proposal.image} />
+                                <Card.Title>{proposal.title}</Card.Title>
+                                <Card.Subtitle className="mb-2 text-muted">By {proposal.author}</Card.Subtitle>
+                                {/* <Card.Text>{shortDescr}</Card.Text> */}
+                                </Card.Body>
+                                </Card>
+                                </div>}
         </div>}
         
         </Col>

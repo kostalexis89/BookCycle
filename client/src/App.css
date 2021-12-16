@@ -250,3 +250,12 @@ h3 {
   display: flex;
   align-items: center;
 }
+
+.proposal {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.title-proposal {
+  color:aliceblue;
+}
