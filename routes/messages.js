@@ -9,7 +9,6 @@ router.post('/sendRequest', (req, res, next) => {
     const {userId, ownerId, message, bookId} = req.body
     console.log('user ID', userId)
     console.log('owner ID',ownerId)
-    // Book.find({$and: [{town:town}, {user: {$ne:user}}]}).populate('user')
 
     Request.find({$and : [{sender: userId}, {reciever:ownerId}, {book:bookId}]})
     .then(request=>{

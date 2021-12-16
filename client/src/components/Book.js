@@ -2,7 +2,7 @@ import React, { useState, useEffect} from 'react'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 
-export default function Book({title, description, image, author, language, handleStoreToMyDB, handlePurpose}) {
+export default function Book({title, message, description, image, author, language, handleStoreToMyDB, handlePurpose}) {
     
     const [shortDescr, setShortDesc] = useState('')
     
@@ -12,7 +12,7 @@ export default function Book({title, description, image, author, language, handl
             setShortDesc(description.slice(0,70)+"...")
         }
     },[])
-
+console.log(message)
     return (
         // <div>
         //     <h1>{title}</h1>
@@ -39,6 +39,7 @@ export default function Book({title, description, image, author, language, handl
             </Card.Body>
             
             </Card>
+            {message && <p>{message}</p>}
         </div>
     )
 }

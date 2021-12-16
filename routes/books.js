@@ -8,11 +8,22 @@ router.post('/add', (req, res, next) => {
     const {title, description, author, image, language,town, purpose, available, user, isbn} = req.body
     console.log(description)
    
-    Book.create({title, description, author, image, language,town, purpose, available, user, isbn})
+    Book.find({$and : [{user: user}, {isbn:isbn}]})
+    .then(response=> {
+        if(response.length===0){
+            Book.create({title, description, author, image, language,town, purpose, available, user, isbn})
     .then(book => {
         res.status(201).json(book)
     })
     .catch(err => next(err))
+        } else {
+            res.status(200).json({ message: 'Book is already entered' })
+        }
+    })
+
+
+
+    
 })
 
 router.post('/mycollection', (req, res, next) => {

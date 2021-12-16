@@ -19,7 +19,7 @@ export default function MyLibrary() {
     const [bookPurpose, setBookPurpose] = useState(null)
     const { user} = useContext(AuthContext)
     const [refresh, setRefresh] = useState(false)
-
+    const [message, setMessage] = useState(null)
 //    console.log(user)
     const handleStoreToMyDB = (e) =>{
         // console.log('I am adding it')
@@ -41,6 +41,10 @@ export default function MyLibrary() {
             setLanguage(null)
             setBookPurpose(null)
             setTitle(null)
+            // console.log(response)
+            if(response.data.message){
+                setMessage(response.data.message)
+            }
 
             //***********Here I HAVE TO REFRESH THE BOOK LIST************ */
         })
@@ -57,6 +61,7 @@ export default function MyLibrary() {
     const handleSubmit = e => {
         e.preventDefault()
         // console.log(isbn)
+        setMessage(null)
         const getWorksApi = `https://openlibrary.org/isbn/${isbn}.json`
         // console.log(axiosString)
         axios.get(getWorksApi)
@@ -119,7 +124,8 @@ export default function MyLibrary() {
             <Col className='my-library-left-column align-top' sm={4}>
                 <FindBook handleSubmit={handleSubmit} isbn={isbn} handleIsbn={handleIsbn}/>
             
-                {title && author && language && <Book title={title} author={author} language={language} description={description} image={image} handleStoreToMyDB={handleStoreToMyDB} handlePurpose={handlePurpose}/>}
+                {title && author && language && <Book title={title} message={message} author={author} language={language} description={description} image={image} handleStoreToMyDB={handleStoreToMyDB} handlePurpose={handlePurpose}/>}
+                {message && <p>{message}</p>}
             </Col>
             <Col className='my-library-right-column' sm={8}>
                 <Row>
