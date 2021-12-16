@@ -235,4 +235,18 @@ h3 {
 
 .message-section {
   color: #282c34;
+  display: flex;
+  flex-direction: column;
+}
+
+.message-grid {
+  color: #282c34;
+  display: flex;
+ flex-wrap: wrap;
+
+}
+
+.my-library-left-column {
+  display: flex;
+  align-items: center;
 }

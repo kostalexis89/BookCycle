@@ -19,8 +19,14 @@ const requestSchema = new Schema(
         // this is the name of the model that the _id refers to 
         ref: 'Book'
       },
-      message: Array
+      message: Array,
+      proposal : {
+        type: Schema.Types.ObjectId,
+        // this is the name of the model that the _id refers to 
+        ref: 'Book'
+      },
     },
+    
     {
       // this second object adds extra properties: `createdAt` and `updatedAt`
       timestamps: true,

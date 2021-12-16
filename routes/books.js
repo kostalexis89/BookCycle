@@ -72,6 +72,18 @@ router.post('/byPurpose', (req, res, next) => {
     })
 })
 
+
+router.post('/getbooklist', (req, res, next) => {
+    console.log(req.body)
+    const {requestId } = req.body
+    console.log(requestId)
+    Book.find({$and: [{user:requestId}, {available: true}]})
+    .then(response => {
+        // console.log(response)
+        res.status(200).json(response)
+    })
+    .catch(err=> console.log(err))
+})
 // router.post('/sendRequest', (req, res, next) => {
 //     const {userId, ownerId, message, bookId} = req.body
 //     console.log('user ID', userId)

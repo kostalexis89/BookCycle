@@ -1,10 +1,27 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Card from "react-bootstrap/Card";
 import Popup from "reactjs-popup";
 import MessageSection from "./MessageSection"
+import axios from 'axios'
 
 export default function RequestBookCard({ request,refresh, setRefresh }) {
-    console.log(request)
+    
+    const [sendersBookList, setSendersBookList] = useState([])
+
+    useEffect(() => {
+      const requestId = request.sender._id
+      // console.log(requestId.request)
+    
+      axios.post('/books/getbooklist', {requestId: requestId})
+      .then(response => {
+        console.log(response)
+        setSendersBookList(response.data)
+        
+      })
+
+      // axios.post('/messages/proposals', {})
+    }, [])
+
   return (
   
     <Popup trigger={<div key={request.book._id} >
@@ -22,7 +39,7 @@ export default function RequestBookCard({ request,refresh, setRefresh }) {
           {/* <Card.Text>{shortDescr}</Card.Text> */}
         </Card.Body>
       </Card>
-      </div>} modal><MessageSection refresh={refresh} setRefresh={setRefresh} messageHistory={request.message} requestSender={request.sender} requestReciever={request.reciever} requestId={request._id}/></Popup>
+      </div>} modal><MessageSection sendersBookList={sendersBookList} refresh={refresh} setRefresh={setRefresh} messageHistory={request.message} requestSender={request.sender} requestReciever={request.reciever} requestId={request._id}/></Popup>
       
     
   );

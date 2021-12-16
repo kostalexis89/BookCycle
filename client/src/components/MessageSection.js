@@ -6,20 +6,45 @@ import {AuthContext} from '../context/auth'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import Card from "react-bootstrap/Card";
 
-export default function MessageSection({messageHistory,requestId, requestSender,refresh, setRefresh, requestReciever}) {
+export default function MessageSection({messageHistory,requestId, requestSender,refresh, setRefresh, requestReciever,sendersBookList}) {
     const [message, setMessage] = useState('')
     const {user} = useContext(AuthContext)
+    const [bookForExchange, setBookForExchange] = useState('')
     const handleMessage = (e) => {
         e.preventDefault()
         setMessage(e.target.value)
         
     }
+    
+    const handleRequest = (book) => {
+        console.log(book)
+        setBookForExchange(book)
+        axios.post('/messages/requestexchange', {bookId:book, requestId: requestId})
+        .then(response => {
+            console.log(response)
+        })
+    }
+    const viewSendersBookList = sendersBookList.map(book=>{
+        return (
+            <div onClick={() => handleRequest(book._id)}>
+                <Card className='message-card-for-grid' style={{ width: "14rem" }}>
+        {/* <Card.Img className='lala' variant="top" src={book.image} /> */}
+        <Card.Body>
+          <Card.Title>{book.title}</Card.Title>
+          <Card.Subtitle className="mb-2 text-muted">By {book.author}</Card.Subtitle>
+          {/* <Card.Text>{shortDescr}</Card.Text> */}
+        </Card.Body>
+      </Card>
+            </div>
+        )
+    })
 
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log(message)
-        console.log(requestSender)
+        // console.log('thats me',requestSender)
         console.log(requestReciever)
         axios.post('/messages/send', {message: user.username +": " + message, requestId:requestId })
         .then(response => {
@@ -38,9 +63,11 @@ export default function MessageSection({messageHistory,requestId, requestSender,
         })
     }
 
-    const wholeMessage = messageHistory.map(message => {
+    const wholeMessage = messageHistory.slice(-8).map(message => {
         return (
+            <div>
             <p key={requestId}>{message}</p>
+            </div>
         )
     })
     return (
@@ -59,6 +86,12 @@ export default function MessageSection({messageHistory,requestId, requestSender,
                     </div>
                 </Form>
             </div>
+        </Col>
+        <Col>
+        {user._id!==requestSender._id && <div className='message-grid'>
+            {viewSendersBookList}
+        </div>}
+        
         </Col>
         </Row>
         </Container>

@@ -19,7 +19,7 @@ router.post('/sendRequest', (req, res, next) => {
 router.post('/outbox', (req, res, next) => {
     const {sender} = req.body
     console.log(sender)
-    Request.find({sender: sender}).populate('book').populate('reciever').populate('sender')
+    Request.find({sender: sender}).populate('book').populate('reciever').populate('sender').populate('proposal')
     .then(request => {
         res.status(201).json(request)
     })
@@ -58,5 +58,19 @@ router.post('/cancel', (req,res,next) => {
     .then(()=> {
         res.status(200).json({ message: 'Request Got Cancelled' })
     })
+})
+
+router.post('/requestexchange', (req, res, next) => {
+    const {bookId, requestId} = req.body
+    
+    console.log("bookId", bookId)
+    console.log("requestId", requestId)
+    Request.findByIdAndUpdate(requestId, {
+        proposal: bookId
+    }, {new: true})
+    .then(updatedBook => {
+        res.status(200).json(updatedBook)
+    })
+    .catch(err => next(err))  
 })
 module.exports = router
