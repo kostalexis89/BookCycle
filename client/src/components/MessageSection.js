@@ -28,8 +28,8 @@ export default function MessageSection({messageHistory,requestId, proposal, requ
     }
     const viewSendersBookList = sendersBookList.map(book=>{
         return (
-            <div onClick={() => handleRequest(book._id)}>
-                <Card className='message-card-for-grid' style={{ width: "14rem" }}>
+          
+                <Card className='message-card-for-grid' style={{ width: "14rem" }} onClick={() => handleRequest(book._id)}>
         {/* <Card.Img className='lala' variant="top" src={book.image} /> */}
         <Card.Body>
           <Card.Title>{book.title}</Card.Title>
@@ -37,7 +37,7 @@ export default function MessageSection({messageHistory,requestId, proposal, requ
           {/* <Card.Text>{shortDescr}</Card.Text> */}
         </Card.Body>
       </Card>
-            </div>
+           
         )
     })
 
@@ -93,10 +93,12 @@ export default function MessageSection({messageHistory,requestId, proposal, requ
         {user._id!==requestSender._id && <div className='message-grid'>
             {viewSendersBookList}
         </div>}
+        
         {user._id===requestSender._id && <div className='message-grid'>
             {<div className='proposal'>
                                     <h2 className='title-proposal'>{requestReciever.username} is asking for</h2>
-                                    <Card className='message-card-for-grid' style={{ width: "14rem" }}>
+                                {proposal &&
+                                <Card className='message-card-for-grid' style={{ width: "14rem" }}>
                                 {/* <Card.Img className='lala' variant="top" src={book.image} /> */}
                                 <Card.Body>
                                 <Card.Img variant="top" src={proposal.image} />
@@ -104,7 +106,7 @@ export default function MessageSection({messageHistory,requestId, proposal, requ
                                 <Card.Subtitle className="mb-2 text-muted">By {proposal.author}</Card.Subtitle>
                                 {/* <Card.Text>{shortDescr}</Card.Text> */}
                                 </Card.Body>
-                                </Card>
+                                </Card>}
                                 </div>}
         </div>}
         

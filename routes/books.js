@@ -5,8 +5,10 @@ const User = require('../models/User.model')
 const Request = require ('../models/Request.model')
 //create a book 
 router.post('/add', (req, res, next) => {
-    const {title, description, author, image, language,town, purpose, available, user} = req.body
-    Book.create({title, description, author, image, language,town, purpose, available, user})
+    const {title, description, author, image, language,town, purpose, available, user, isbn} = req.body
+    console.log(description)
+   
+    Book.create({title, description, author, image, language,town, purpose, available, user, isbn})
     .then(book => {
         res.status(201).json(book)
     })

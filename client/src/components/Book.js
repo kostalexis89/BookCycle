@@ -8,7 +8,7 @@ export default function Book({title, description, image, author, language, handl
     
     useEffect(() => {
         console.log(description)
-        if(description){
+        if(description && (typeof description ==="string")){
             setShortDesc(description.slice(0,70)+"...")
         }
     },[])

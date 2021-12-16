@@ -14,7 +14,7 @@ export default function Book({title,ownerId, description, image, author, languag
 
     return (
         <Popup trigger={<div className="book-card" >
-        <Card style={{ width: '14rem' }}>
+        <Card className='home-card' style={{ width: '14rem' }}>
         <Card.Img variant="top" src={image} />
         <Card.Body>
             <Card.Title>{title}</Card.Title>

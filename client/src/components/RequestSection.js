@@ -35,8 +35,8 @@ export default function RequestSection({owner,ownerId, bookId}) {
     return (
         <>{showMessage ? <Button variant="danger" onClick={handleShowMessageBox}>Send a message to {owner}</Button> 
         : <>
-            <Form className='send-form' onSubmit={handleSubmit}>
-                <Form.Group className="mb-2" controlId="exampleForm.ControlTextarea1">
+            <Form className='send-form' onSubmit={handleSubmit} style={{ width: "100%"}}>
+                <Form.Group className="mb-2" controlId="exampleForm.ControlTextarea1" style={{ width: "100%"}}>
                     <Form.Control value={message}  onChange={handleMessage} as="textarea" rows={3} placeholder="Write a message " />
                 </Form.Group>
                 <div className='message-btns'>

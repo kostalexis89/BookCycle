@@ -4,6 +4,11 @@ const User = require('./User.model');
 
 const bookSchema = new Schema(
   {
+    isbn: {
+    type: String,
+    unique: false,
+    required: false
+  },
     title: {
       type: String,
       unique: false,

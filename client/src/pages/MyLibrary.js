@@ -25,7 +25,12 @@ export default function MyLibrary() {
         // console.log('I am adding it')
         e.preventDefault()
         // if(description)
-        const requestBody = {title: title, description: description, author: author, image: image, language: language, town: user.town, purpose: bookPurpose, available: true, user: user._id}
+        // console.log(description.value)
+        if(typeof description!=="string" && description!==null){
+            setDescription(description.value)
+        }
+        console.log(description)
+        const requestBody = {isbn:isbn, title: title, description: description, author: author, image: image, language: language, town: user.town, purpose: bookPurpose, available: true, user: user._id}
         axios.post('/books/add', requestBody)
         .then(response=> {
             // console.log(response)
@@ -111,7 +116,7 @@ export default function MyLibrary() {
         
             <Container>
             <Row>
-            <Col className='my-library-left-column' sm={4}>
+            <Col className='my-library-left-column align-top' sm={4}>
                 <FindBook handleSubmit={handleSubmit} isbn={isbn} handleIsbn={handleIsbn}/>
             
                 {title && author && language && <Book title={title} author={author} language={language} description={description} image={image} handleStoreToMyDB={handleStoreToMyDB} handlePurpose={handlePurpose}/>}
