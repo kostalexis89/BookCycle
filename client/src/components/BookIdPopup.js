@@ -96,7 +96,7 @@ export default function BookIdPopup({
       
       </div>
     </div>
-  </div> : <Spinner animation="grow"></Spinner>}</>
+  </div> : <span style={{display:"flex"}, {justifyContent:"space-around"}}><Spinner animation="grow"></Spinner></span>}</>
     
   );
 }
