@@ -41,6 +41,7 @@ export default function MyLibrary() {
             setLanguage(null)
             setBookPurpose(null)
             setTitle(null)
+            setRefresh(!refresh)
             // console.log(response)
             if(response.data.message){
                 setMessage(response.data.message)
@@ -49,9 +50,9 @@ export default function MyLibrary() {
             //***********Here I HAVE TO REFRESH THE BOOK LIST************ */
         })
         .catch(err => console.log(err))
-        setRefresh(!refresh)
+        
     }
-
+    console.log("this is from refresh",refresh)
     const handlePurpose = (e) => {
         // setBookPurpose(e)
         setBookPurpose(e.target.value)
