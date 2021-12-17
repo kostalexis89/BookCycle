@@ -20,6 +20,16 @@ export default function MessageSection({messageHistory,requestId, proposal, requ
         
     }
     
+    const handlePurposeRequest = (id, user) => {
+        console.log(user)
+        console.log(requestId)
+        axios.post('/messages/agree', {userId:id, requestId:requestId, userType: user})
+        .then(response => {
+            console.log(response)
+        })
+
+    }
+
     const handleRequest = (book) => {
         // console.log(book)
         setBookForExchange(book._id)
@@ -33,12 +43,14 @@ export default function MessageSection({messageHistory,requestId, proposal, requ
     const viewSendersBookList = sendersBookList.map(book=>{
         return (
           
-                <Card className='message-card-for-grid' style={{ width: "14rem" }} onClick={() => handleRequest(book)}>
+                <Card className='message-card-for-grid' style={{ width: "14rem" }}>
         {/* <Card.Img className='lala' variant="top" src={book.image} /> */}
         <Card.Body>
-          <Card.Title>{book.title}</Card.Title>
+          <Card.Title onClick={() => handleRequest(book)}>{book.title}</Card.Title>
           <Card.Subtitle className="mb-2 text-muted">By {book.author}</Card.Subtitle>
           {/* <Card.Text>{shortDescr}</Card.Text> */}
+          {proposalBack===book.title && <Button variant="danger" onClick={()=>handlePurposeRequest(requestReciever._id, "Receiver")}>Purpose Completed</Button>
+}
         </Card.Body>
       </Card>
            
@@ -76,9 +88,12 @@ export default function MessageSection({messageHistory,requestId, proposal, requ
             </div>
         )
     })
+
+    
+
     return (
         <Container>
-        <Row>
+        <Row className='card-wrap'>
         <Col className='my-library-left-column' sm={5}>
             <div className='message-section' key={requestId}>
                 {wholeMessage}
@@ -112,10 +127,10 @@ export default function MessageSection({messageHistory,requestId, proposal, requ
                                 <Card.Subtitle className="mb-2 text-muted">By {proposal.author}</Card.Subtitle>
                                 {/* <Card.Text>{shortDescr}</Card.Text> */}
                                 </Card.Body>
+                                <Button variant="danger" onClick={()=>handlePurposeRequest(requestSender._id,"sender")}>Purpose Completed</Button>
                                 </Card>}
                                 </div>}
         </div>}
-        {checked && <p className='align-right-message'>Sended a request to {requestSender.username} for {proposalBack}</p>}
         
         </Col>
         </Row>

@@ -10,18 +10,18 @@ export default function OutboxRequests() {
     const [refresh, setRefresh] = useState(0)
     // console.log(user)
     useEffect(() => {
-        console.log(user._id)
+        // console.log(user._id)
         axios.post('/messages/outbox', {sender: user._id})
         .then(response => {
             console.log('hello from response',response)
             setRequests(response.data)
         })
 
-    },[refresh])
-    console.log('THE EREQUESTS ARE',requests)
+    })
+    // console.log('THE EREQUESTS ARE',requests)
     
     const requestList = requests.map(request => {
-        console.log('the proposal is',request)
+        // console.log('the proposal is',request)
         return (<div>
             <RequestBookCard request={request} refresh={refresh} setRefresh={setRefresh} proposal={request.proposal}/>
         </div>)

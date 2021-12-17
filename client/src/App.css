@@ -294,3 +294,14 @@ h3 {
   display: flex;
   justify-content: flex-end;
 }
+
+.card-wrap {
+  flex-wrap: nowrap!important;
+}
+.request-btns-message {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-direction: column;
+  margin-bottom: 30px;
+}

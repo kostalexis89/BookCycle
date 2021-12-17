@@ -25,6 +25,11 @@ const requestSchema = new Schema(
         // this is the name of the model that the _id refers to 
         ref: 'Book'
       },
+      agreed: {
+        type: Number,
+        required: false,
+        unique: false
+    },
     },
     
     {

@@ -3,6 +3,7 @@ const Book = require('../models/Book.model')
 // const userEditAccess = require("../middleware/userEditAccess");
 const User = require('../models/User.model')
 const Request = require ('../models/Request.model')
+const { request } = require('express')
 
 
 router.post('/sendRequest', (req, res, next) => {
@@ -74,11 +75,42 @@ router.post('/requestexchange', (req, res, next) => {
     console.log("bookId", bookId)
     console.log("requestId", requestId)
     Request.findByIdAndUpdate(requestId, {
-        proposal: bookId
+        proposal: bookId, agreed:0
     }, {new: true})
     .then(updatedBook => {
         res.status(200).json(updatedBook)
     })
     .catch(err => next(err))  
 })
+
+router.post('/agree', (req,res,next) => {
+    const {userId, requestId,userType} = req.body
+    console.log(userType)
+    // if(userType==="Receiver") {
+
+    // }
+    // Request.findById(requestId)
+    // .then(response=>{
+    //     // console.log(response.agreed)
+    //     Request.findByIdAndUpdate(requestId, {
+    //         agreed:response.agreed+1
+    //    }, {new: true}).populate('proposal')
+    //    .then(request => {
+    //     if(request.agreed>=1){
+    //         res.status(200).json(request)
+    //         console.log(request.proposal._id)
+    //         Book.findByIdAndUpdate(request.proposal._id, {available:false}, {new: true})
+    //         .then(updatedBook => {
+    //             res.status(200).json(updatedBook)
+    //         })
+    //         .catch(err => next(err)) 
+    //     }
+           
+           
+    //    })
+    //    .catch(err => next(err))  
+    // })
+    
+})
+
 module.exports = router
