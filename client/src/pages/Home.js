@@ -67,13 +67,17 @@ export default function Home() {
           </Container>
         </>
       ) : (
-        <div className="front-page">
-          <h1>Welcome to BookCycle</h1>
-          <p>
-            An application that helps people trade exchange or Give Away their
-            books
-          </p>
+        <>
+        <div className="header">
+        <div className="front-page-text-box">
+          <h1 className="heading-primary">
+             <span class="heading-primary-main">BookCycle</span>
+              <span class="heading-primary-sub">Trade your Books</span>
+          </h1>
         </div>
+        </div>
+        </>
+        
       )}
     </>
   );
