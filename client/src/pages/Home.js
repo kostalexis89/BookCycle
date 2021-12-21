@@ -6,6 +6,7 @@ import Col from "react-bootstrap/Col";
 import 'react-multi-carousel/lib/styles.css';
 import BookSliderForHome from "../components/BookSliderForHome";
 import BookSliderForHomeByTown from "../components/BookSliderForHomeByTown";
+import {Link} from 'react-router-dom'
 
 export default function Home() {
  
@@ -74,6 +75,10 @@ export default function Home() {
              <span class="heading-primary-main">BookCycle</span>
               <span class="heading-primary-sub">Trade your Books</span>
           </h1>
+          <div className="front-btns">
+            <Link to='/login' className="btna btn-white">Log In</Link>
+            <Link to='/signup' className="btna btn-white">Sign Up</Link>
+          </div>
         </div>
         </div>
         </>

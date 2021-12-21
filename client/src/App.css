@@ -153,6 +153,7 @@ header {
   background-color: #1A1423
 }
 
+/* New styles */
 .header {
   height: 95vh;
     background-image: linear-gradient(to right bottom,
@@ -179,6 +180,7 @@ header {
   display: flex;
     flex-direction: column;
     align-items: center;
+    backface-visibility: hidden;
 }
 
 .heading-primary-main {
@@ -186,6 +188,9 @@ header {
   font-size: 60px;
   font-weight: 400;
   letter-spacing: 35px;
+  animation-name: moveInLeft;
+  animation-duration: 2s;
+  animation-timing-function: ease-in;
 }
 
 .heading-primary-sub {
@@ -193,9 +198,93 @@ header {
   font-size: 20px;
   font-weight: 700;
   letter-spacing: 17.4px;
+  animation-name: moveInRight;
+  animation-duration: 2s;
+  animation-timing-function: ease-in;
   /* border: 1rem solid; */
 }
 
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-250px);
+  }
+  80% {
+    transform: translateX(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(250px);
+  }
+  80% {
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes moveInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(250px);
+  }
+  80% {
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+.front-btns {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 20px;
+  animation-name: moveInUp;
+  animation-duration: 2s;
+  animation-timing-function: ease-in;
+}
+
+.btna:link,
+.btna:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 15px 40px;
+  display: inline-block;
+  border-radius: 100px;
+  transition: all .2s;
+}
+
+.btna:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.199);
+  color: black;
+  font-weight: 600;
+}
+
+.btna:active {
+transform: translateY(-1px);
+box-shadow: 0 5px 10px rgba(0, 0, 0, 0.199);
+}
+
+.btn-white {
+  background-color: #fff;
+  color: #777;
+  margin-top: 30px;
+}
+
+
+/* End of new styles */
 .headers-h2 {
  display: flex;
  justify-content: center;
